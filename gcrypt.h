@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include "config.h"
+
 using namespace std;
 
 namespace gcrypt

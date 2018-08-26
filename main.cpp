@@ -4,6 +4,7 @@
 #include <string.h>
 #include "gcrypt.h"
 #include "console.h"
+#include "config.h"
 
 using namespace std;
 using namespace gcrypt;
