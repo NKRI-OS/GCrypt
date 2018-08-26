@@ -10,6 +10,8 @@ using namespace gcrypt;
 
 void processAndWrite (void (* process_data) (char * data, const ulong & datasize, const string & key), string key, string input_file, string output_file);
 
+#ifdef __linux__
+
 char header [] =
 	"\033[1;31m"
 	" _______    _____    _______  _      _  _______   _______   /\\ \n"
@@ -22,7 +24,7 @@ char header [] =
 	"|_______|  \\_____/  ||     ||    ||    ||           |_|     || \n"
 	"\033[0m"
 	"                                                           \033[1;31m || \033[0m\n"
-    "\033[1;33mGCrypt v0.1 - https://github.com/GasparVardanyan/GCrypt\033[0m    \033[1;31m || \033[0m\n"
+	"\033[1;33mGCrypt v0.1 - https://github.com/GasparVardanyan/GCrypt\033[0m    \033[1;31m || \033[0m\n"
 	"                                                           \033[1;31m || \033[0m\n"
 	"Options:                                                   \033[1;31m || \033[0m\n"
 	"\t--help\t\t\tDisplay this help message  \033[1;31m || \033[0m\n"
@@ -40,6 +42,45 @@ char header [] =
 	"\tgcrypt -d samplekey file_to_decrypt outputfile     \033[1;31m || \033[0m\n"
 	"\033[1;31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[0m\n"
 ;
+
+string cmd_label = "\033[1;31mgcrypt\033[0m> ";
+
+#else // __linux__
+
+char header [] =
+	""
+	" _______    _____    _______  _      _  _______   _______   /\\ \n"
+	"|  ___  |  /_____\\  | _____ \\ \\\\    // | _____ \\\ |___ ___| /||\\\n"
+	"| |   |_| //     \\\\ ||     ||  \\\\  //  ||     ||    | |     || \n"
+	"| |  ___  ||        ||_____||   \\\\//   ||_____||    | |     || \n"
+	"| | |_  | ||        ||_____ /    \\/    ||______/    | |     || \n"
+	"| |   | | ||      _ ||     \\\\\    ||    ||           | |     || \n"
+	"| |___| | \\\\_____// ||     ||    ||    ||           | |     || \n"
+	"|_______|  \\_____/  ||     ||    ||    ||           |_|     || \n"
+	""
+	"                                                            || \n"
+	"GCrypt v0.1 - https://github.com/GasparVardanyan/GCrypt     || \n"
+	"                                                            || \n"
+	"Options:                                                    || \n"
+	"\t--help\t\t\tDisplay this help message   || \n"
+	"\t-e\t\t\tEncryption mode             || \n"
+	"\t-d\t\t\tDecryption mode             || \n"
+	"\t-c\t\t\tConsole mode                || \n"
+	"Console commands:                                           || \n"
+	"\tencrypt\t\t\tEncrypt file                || \n"
+	"\tdecrypt\t\t\tDecrypt file                || \n"
+	"\texit\t\t\tExit console                || \n"
+	"Usage:                                                      || \n"
+	"\tgcrypt [mode] [[key] [inputfile] [outputfile]]      || \n"
+	"Examples:                                                   || \n"
+	"\tgcrypt -e samplekey file_to_encrypt outputfile      || \n"
+	"\tgcrypt -d samplekey file_to_decrypt outputfile      || \n"
+	"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+;
+
+string cmd_label = "gcrypt> ";
+
+#endif // __linux__
 
 char argumentsError [] =
 	"Error: invalid arguments detected.\n"
@@ -70,7 +111,6 @@ int main (int argc, char * argv [])
 	void (* process_data) (char * data, const ulong & datasize, const string & key);
 	string key, input_file, output_file;
 	bool process = false;
-	string cmd_label = "\033[1;31mgcrypt\033[0m> ";
 
 	if (argc == 1)
 		cout << header;
