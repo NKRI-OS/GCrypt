@@ -139,9 +139,9 @@ int main (int argc, char * argv [])
 						process_data = & GCrypt::decrypt;
 						needConfirmKey = false;
 					}
-					else if (command == "exit")
+					else if (command == CMD_EXIT)
 					{
-						cmdexec = "start";
+						cmdexec = CMDEXEC_START;
 						return 1;
 					}
 					else if (command != "")
@@ -193,7 +193,6 @@ int main (int argc, char * argv [])
 						label = cmd_label;
 						Console::SetStdinEcho (true);
 						processAndWrite (process_data, key, input_file, output_file);
-						input_file = output_file = key = "";
 					}
 					else
 					{
