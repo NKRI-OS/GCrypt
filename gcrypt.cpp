@@ -256,7 +256,7 @@ void GCrypt::encrypt (char * data, const ulong & datasize, const string & key)
 
 void GCrypt::decrypt (char * data, const ulong & datasize, const string & key)
 {
-//		checkKey (key); // The key is already checked when data is encrypted.
+//	checkKey (key); // The key is already checked when data is encrypted.
 	GCrypt::BytePairs keyBytePairs (key);
 	vector <ubyte> bytesTable = GCrypt::BytesTable ();
 
