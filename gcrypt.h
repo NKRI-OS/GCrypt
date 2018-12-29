@@ -18,12 +18,12 @@ void gHash (const ubyte * const key, unsigned long long key_size, ubyte hash [25
         s = 256 / b;
         sm = 256 % b;
         if (sm != 0) s++;
-        wi = 0;
+        wi = b;
         for (bi = 0; bi < b; bi++)
         {
             if (bi == sm) s--;
             for (si = 0; si < s; si++)
-                hash [(ubyte) (b + wi++)] = h1 [(ubyte) (b * si + bi)];
+                hash [wi++] = h1 [(ubyte) (b * si + bi)];
         }
         for (j = 0; j < 256; j++) h1 [j] = hash [j];
     }
