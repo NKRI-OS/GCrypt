@@ -2,7 +2,6 @@
 #define GCRYPT_H
 
 #include <string.h>
-#include <stdio.h>
 
 typedef unsigned char ubyte;
 
