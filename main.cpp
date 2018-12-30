@@ -105,34 +105,34 @@ char outputFileDirNotFound [] =
 
 int main (int argc, char * argv [])
 {
-    void (* process_data) (const ubyte * const, unsigned long long, const ubyte * const, unsigned long long, ubyte *);
-    std::string key, input_file, output_file;
+	void (* process_data) (const ubyte * const, unsigned long long, const ubyte * const, unsigned long long, ubyte *);
+	std::string key, input_file, output_file;
 	bool process = false;
 
 	if (argc == 1)
-        std::cout << header;
+		std::cout << header;
 	else if (argc == 2)
-        if (strcmp (argv [1], "--help") == 0)
-            std::cout << header;
+		if (strcmp (argv [1], "--help") == 0)
+			std::cout << header;
 		else if (strcmp (argv [1], "-c") == 0)
-            Console::Begin (cmd_label, [&] (std::string & command, std::string & label)
+			Console::Begin (cmd_label, [&] (std::string & command, std::string & label)
 			{
-                static std::string cmdexec = CMDEXEC_START;
+				static std::string cmdexec = CMDEXEC_START;
 				static bool needConfirmKey;
 				if (cmdexec == CMDEXEC_START)
 				{
 					if (command == CMD_ENCRYPT)
 					{
-                        cmdexec = CMDEXEC_CRYPT_I;
+						cmdexec = CMDEXEC_CRYPT_I;
 						label = "Input file:\t";
-                        process_data = & gEncrypt;
+						process_data = & gEncrypt;
 						needConfirmKey = true;
 					}
 					else if (command == CMD_DECRYPT)
 					{
 						cmdexec = CMDEXEC_CRYPT_I;
 						label = "Input file:\t";
-                        process_data = & gDecrypt;
+						process_data = & gDecrypt;
 						needConfirmKey = false;
 					}
 					else if (command == CMD_EXIT)
@@ -142,7 +142,7 @@ int main (int argc, char * argv [])
 					}
 					else if (command != "")
 					{
-                        std::cout << "Error: unknown command \"" << command << "\"." << std::endl;
+						std::cout << "Error: unknown command \"" << command << "\"." << std::endl;
 					}
 				}
 				else if (cmdexec == CMDEXEC_CRYPT_I)
@@ -160,7 +160,7 @@ int main (int argc, char * argv [])
 				}
 				else if (cmdexec == CMDEXEC_CRYPT_K)
 				{
-                    std::cout << std::endl;
+					std::cout << std::endl;
 					if (command != "")
 					{
 						key = command;
@@ -178,11 +178,11 @@ int main (int argc, char * argv [])
 							input_file = output_file = key = "";
 						}
 					}
-                    else std::cout << "Error: key is empty." << std::endl;
+					else std::cout << "Error: key is empty." << std::endl;
 				}
 				else if (cmdexec == CMDEXEC_CRYPT_R)
 				{
-                    std::cout << std::endl;
+					std::cout << std::endl;
 					if (command == key)
 					{
 						cmdexec = CMDEXEC_START;
@@ -192,7 +192,7 @@ int main (int argc, char * argv [])
 					}
 					else
 					{
-                        std::cout << "Error: key does not match the confirm key." << std::endl;
+						std::cout << "Error: key does not match the confirm key." << std::endl;
 						cmdexec = CMDEXEC_CRYPT_K;
 						label = "Key:\t\t";
 					}
@@ -202,16 +202,16 @@ int main (int argc, char * argv [])
 			});
 		else
 		{
-            std::cerr << argumentsError;
+			std::cerr << argumentsError;
 			return 1;
 		}
 	else if (argc == 5)
 	{
-        if (strcmp (argv [1], "-e") == 0) process_data = & gEncrypt;
-        else if (strcmp (argv [1], "-d") == 0) process_data = & gDecrypt;
+		if (strcmp (argv [1], "-e") == 0) process_data = & gEncrypt;
+		else if (strcmp (argv [1], "-d") == 0) process_data = & gDecrypt;
 		else
 		{
-            std::cerr << argumentsError;
+			std::cerr << argumentsError;
 			return 1;
 		}
 		key = argv [2], input_file = argv [3], output_file = argv [4];
@@ -219,7 +219,7 @@ int main (int argc, char * argv [])
 	}
 	else
 	{
-        std::cerr << argumentsError;
+		std::cerr << argumentsError;
 		return 1;
 	}
 
@@ -231,38 +231,38 @@ int main (int argc, char * argv [])
 
 void processAndWrite (void (* process_data) (const ubyte * const, unsigned long long, const ubyte * const, unsigned long long, ubyte *), std::string key, std::string input_file, std::string output_file)
 {
-    std::ifstream file_read (input_file, std::ios_base::in | std::ios_base::binary);
+	std::ifstream file_read (input_file, std::ios_base::in | std::ios_base::binary);
 	if (file_read.fail ())
 	{
-        std::cerr << inputFileNotFound;
+		std::cerr << inputFileNotFound;
 		return;
 	}
 
-    unsigned long long pos, start, end, filesize;
+	unsigned long long pos, start, end, filesize;
 
 	pos = file_read.tellg ();
-    file_read.seekg (0, std::ios_base::beg);
+	file_read.seekg (0, std::ios_base::beg);
 	start = file_read.tellg ();
-    file_read.seekg (0, std::ios_base::end);
+	file_read.seekg (0, std::ios_base::end);
 	end = file_read.tellg ();
-    file_read.seekg (pos, std::ios_base::beg);
+	file_read.seekg (pos, std::ios_base::beg);
 	filesize = end - start;
 
-    char * bytearray = new char [filesize];
+	char * bytearray = new char [filesize];
 	file_read.read (bytearray, filesize);
 
 	file_read.close ();
 
-    std::ofstream file_write (output_file, std::ios_base::out | std::ios_base::trunc | std::ios_base::binary);
+	std::ofstream file_write (output_file, std::ios_base::out | std::ios_base::trunc | std::ios_base::binary);
 	if (file_write.fail ())
 	{
-        std::cerr << outputFileDirNotFound;
+		std::cerr << outputFileDirNotFound;
 		return;
 	}
-    process_data ((ubyte *) bytearray, filesize, (ubyte *) key.c_str (), key.size (), (ubyte *) bytearray);
+	process_data ((ubyte *) bytearray, filesize, (ubyte *) key.c_str (), key.size (), (ubyte *) bytearray);
 	file_write.write (bytearray, filesize);
 
-    std::cout << '\a';
+	std::cout << '\a';
 
 	delete [] bytearray;
 	file_write.close ();
