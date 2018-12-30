@@ -1,6 +1,8 @@
 # GCrypt - Simple file encryption tool written in C/C++
 ![Screenshot](https://github.com/GasparVardanyan/GCrypt/raw/master/screenshot.png)
 
+## Installation
+
 ### Installation on BlackArch Linux
 `yay -Syy gcrypt`
 
