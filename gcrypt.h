@@ -13,7 +13,7 @@ void gHash (const ubyte * const key, unsigned long long key_size, ubyte hash [25
     {
         b = key [i];
         if (b == 0) continue;
-        s = 256 / b;
+		s = 256 / b;
         sm = 256 % b;
         if (sm != 0) s++;
         wi = b;
@@ -34,7 +34,7 @@ void gEncrypt (const ubyte * const data, unsigned long long data_size, const uby
     gHash (key, key_size, hash);
 
     for (unsigned long long i = 0; i < data_size; i++)
-        output [i] = rot += hash [data [i]];
+		output [i] = hash [rot += data [i]];
 }
 
 void gDecrypt (const ubyte * const data, unsigned long long data_size, const ubyte * const key, unsigned long long key_size, ubyte * output)
@@ -45,15 +45,10 @@ void gDecrypt (const ubyte * const data, unsigned long long data_size, const uby
 
     for (unsigned long long i = 0; i < data_size; i++)
     {
-        for (ubyte b = 0 ;; b++)
-        {
-            if ((ubyte) (rot + hash [b]) == data [i])
-            {
-                output [i] = b;
-                rot += hash [b];
-                break;
-            }
-        }
+		ubyte b = 0;
+		for (; hash [b] != data [i]; b++);
+		output [i] = (ubyte) (b - rot);
+		rot += data [i];
     }
 }
 
