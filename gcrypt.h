@@ -1,8 +1,6 @@
 #ifndef GCRYPT_H
 #define GCRYPT_H
 
-#include <string.h>
-
 typedef unsigned char ubyte;
 
 void gHash (const ubyte * const key, unsigned long long key_size, ubyte hash [256])
