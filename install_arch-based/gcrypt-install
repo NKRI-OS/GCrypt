@@ -1,5 +1,0 @@
-#!/bin/sh
-mkdir GCrypt
-cd GCrypt
-wget https://raw.githubusercontent.com/GasparVardanyan/GCrypt/master/blackarch/PKGBUILD
-makepkg -si

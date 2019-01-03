@@ -6,7 +6,7 @@
 ### Installation on BlackArch Linux
 `yay -Syy gcrypt`
 
-### Installation on Arch-based distributions
+### Installation on Arch Linux
 `mkdir GCrypt`<br>
 `cd GCrypt`<br>
 `wget https://raw.githubusercontent.com/GasparVardanyan/GCrypt/master/blackarch/PKGBUILD`<br>
