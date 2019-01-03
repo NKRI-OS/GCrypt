@@ -20,5 +20,5 @@
 `sudo chmod +x /bin/gcrypt`
 
 ### Windows executables
-[GCrypt 32-bit](https://raw.githubusercontent.com/GasparVardanyan/GCrypt/master/windows/gcrypt32.exe)<br>
-[GCrypt 64-bit](https://raw.githubusercontent.com/GasparVardanyan/GCrypt/master/windows/gcrypt64.exe)
+[Download GCrypt 32-bit](https://raw.githubusercontent.com/GasparVardanyan/GCrypt/master/windows/gcrypt32.exe)<br>
+[Download GCrypt 64-bit](https://raw.githubusercontent.com/GasparVardanyan/GCrypt/master/windows/gcrypt64.exe)
