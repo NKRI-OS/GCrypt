@@ -18,3 +18,7 @@
 `sh $PWD/compile.sh`<br>
 `sudo cp $PWD/gcrypt /bin/`<br>
 `sudo chmod +x /bin/gcrypt`
+
+### Windows executables
+[GCrypt 32-bit](https://raw.githubusercontent.com/GasparVardanyan/GCrypt/master/windows/gcrypt32.exe)<br>
+[GCrypt 64-bit](https://raw.githubusercontent.com/GasparVardanyan/GCrypt/master/windows/gcrypt64.exe)
