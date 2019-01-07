@@ -21,7 +21,7 @@ char header [] =
     "|_______|  \\_____/  ||     ||    ||    ||           |_|     || \n"
     "\033[0m"
     "                                                           \033[1;31m || \033[0m\n"
-	"\033[1;33mGCrypt v1.1 - https://github.com/GasparVardanyan/GCrypt\033[0m    \033[1;31m || \033[0m\n"
+	"\033[1;33mGCrypt v1.2 - https://github.com/GasparVardanyan/GCrypt\033[0m    \033[1;31m || \033[0m\n"
     "                                                           \033[1;31m || \033[0m\n"
     "Options:                                                   \033[1;31m || \033[0m\n"
     "\t--help\t\t\tDisplay this help message  \033[1;31m || \033[0m\n"
@@ -56,7 +56,7 @@ char header [] =
     "|_______|  \\_____/  ||     ||    ||    ||           |_|     || \n"
     ""
     "                                                            || \n"
-	"GCrypt v1.1 - https://github.com/GasparVardanyan/GCrypt     || \n"
+	"GCrypt v1.2 - https://github.com/GasparVardanyan/GCrypt     || \n"
     "                                                            || \n"
     "Options:                                                    || \n"
     "\t--help\t\t\tDisplay this help message   || \n"
@@ -189,6 +189,7 @@ int main (int argc, char * argv [])
 						label = cmd_label;
 						Console::SetStdinEcho (true);
 						processAndWrite (process_data, key, input_file, output_file);
+						input_file = output_file = key = "";
 					}
 					else
 					{

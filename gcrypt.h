@@ -7,12 +7,21 @@ void gHash (const ubyte * const key, unsigned long long key_size, ubyte hash [25
 {
 	ubyte h1 [256];
 	unsigned long long i, j;
-	ubyte s, sm, b, bi, si, wi;
+	ubyte s, sm, b, bi, si, wi, t;
 	for (i = 0; i < 256; i++) h1 [i] = (ubyte) i;
 	for (i = 0; i < key_size; i++)
 	{
 		b = key [i];
-		if (b == 0) continue;
+		if (b == 0)
+		{
+			for (j = 0; j < 128; j++)
+			{
+				t = h1 [j];
+				h1 [j] = hash [j] = h1 [255 - j];
+				h1 [255 - j] = hash [255 - j] = t;
+			}
+			continue;
+		}
 		s = 256 / b;
 		sm = 256 % b;
 		if (sm != 0) s++;
