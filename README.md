@@ -4,7 +4,7 @@
 ## Installation
 
 ### Installation on BlackArch Linux
-`yay -Syy gcrypt`
+`sudo pacman -Syy gcrypt`
 
 ### Installation on Arch Linux
 `mkdir GCrypt`<br>
