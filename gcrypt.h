@@ -42,7 +42,7 @@ void gEncrypt (const ubyte * const data, unsigned long long data_size, const uby
 	ubyte rot = 0;
 	gHash (key, key_size, hash);
 
-	for (unsigned long long i = 0; i < data_size; i++)
+	for (register unsigned long long i = 0; i < data_size; i++)
 		output [i] = hash [rot += data [i]];
 }
 
@@ -52,7 +52,7 @@ void gDecrypt (const ubyte * const data, unsigned long long data_size, const uby
 	ubyte rot = 0;
 	gHash (key, key_size, hash);
 
-	for (unsigned long long i = 0; i < data_size; i++)
+	for (register unsigned long long i = 0; i < data_size; i++)
 	{
 		ubyte b = 0;
 		for (; hash [b] != data [i]; b++);
