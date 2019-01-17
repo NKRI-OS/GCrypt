@@ -56,8 +56,7 @@ void gDecrypt (const ubyte * const data, unsigned long long data_size, const uby
 	{
 		ubyte b = 0;
 		for (; hash [b] != data [i]; b++);
-		output [i] = (ubyte) (b - rot);
-		rot += data [i];
+		rot += output [i] = (ubyte) (b - rot);
 	}
 }
 
